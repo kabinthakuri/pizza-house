@@ -21,3 +21,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/pizza','App\Http\Controllers\PizzaController@index')->name('pizza.index');
+Route::get('/pizza/create','App\Http\Controllers\PizzaController@create')->name('pizza.create');
+Route::post('/pizza/store','App\Http\Controllers\PizzaController@store')->name('pizza.store');

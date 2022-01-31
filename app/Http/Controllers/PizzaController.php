@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pizza;
+use App\Http\Requests\PizzaStoreRequest;
 
 class PizzaController extends Controller
 {
@@ -23,7 +25,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pizza.create');
     }
 
     /**
@@ -32,9 +34,20 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PizzaStoreRequest $request)
     {
-        //
+        $pizza=new Pizza;
+        $pizza->name=$request->name;
+        $pizza->description=$request->description;
+        $pizza->small_pizza_price=$request->small_pizza_price;
+        $pizza->medium_pizza_price=$request->medium_pizza_price;
+        $pizza->large_pizza_price=$request->large_pizza_price;
+        $pizza->category=$request->category;
+        $pizza->image=$request->file('image')->store('public/upload/pizza_image');
+        $pizza->save();
+
+        return redirect()->route('pizza.index');
+        
     }
 
     /**
