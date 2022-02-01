@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::prefix('/pizza')->group(function(){
+Route::prefix('/pizza')->middleware('auth','admin')->group(function(){
     Route::get('/','App\Http\Controllers\PizzaController@index')->name('pizza.index');
     Route::get('/create','App\Http\Controllers\PizzaController@create')->name('pizza.create');
     Route::post('/store','App\Http\Controllers\PizzaController@store')->name('pizza.store');

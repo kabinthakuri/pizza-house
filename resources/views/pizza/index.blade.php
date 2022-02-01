@@ -4,7 +4,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">All Pizzas</div>
+                <div class="card-header">All Pizzas
+                    <a href="{{route('pizza.create')}}" class="btn btn-success " style="float:right;">Add pizza</a>
+                </div>
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
@@ -21,6 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if(count($pizza)>0)
                             @foreach($pizza as $key=>$pizzas)
                                 <tr>
                                     <td>{{$key+1}}</td>
@@ -63,8 +66,13 @@
                                     </td>
                                 </tr>
                             @endforeach
+
+                            @else
+                            <h3>No pizza data added.Please! add data.</h3>
+                            @endif
                         </tbody>
                     </table>
+                    {{$pizza->links()}}
                 </div>
             </div>
           
