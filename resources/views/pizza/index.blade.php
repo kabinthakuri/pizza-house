@@ -32,8 +32,34 @@
                                     <td>Rs.{{$pizzas->medium_pizza_price}}</td>
                                     <td>Rs.{{$pizzas->large_pizza_price}}</td>
                                     <td>
-                                        <a href="#" class="btn btn-info">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
+                                        <a href="{{route('pizza.edit',$pizzas->id)}}" class="btn btn-info">Edit</a>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$pizzas->id}}">Delete</button>
+                                        
+                                           
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal{{$pizzas->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <form action="{{route('pizza.destroy',$pizzas->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete {{$pizzas->name}}?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Delete pizza</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </form>
+                                        
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -19,7 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::prefix('/pizza')->group(function(){
+    Route::get('/','App\Http\Controllers\PizzaController@index')->name('pizza.index');
+    Route::get('/create','App\Http\Controllers\PizzaController@create')->name('pizza.create');
+    Route::post('/store','App\Http\Controllers\PizzaController@store')->name('pizza.store');
+    Route::get('/edit/{id}','App\Http\Controllers\PizzaController@edit')->name('pizza.edit');
+    Route::put('/update/{id}','App\Http\Controllers\PizzaController@update')->name('pizza.update');
+    Route::delete('/delete/{id}','App\Http\Controllers\PizzaController@destroy')->name('pizza.destroy');
+
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/pizza','App\Http\Controllers\PizzaController@index')->name('pizza.index');
-Route::get('/pizza/create','App\Http\Controllers\PizzaController@create')->name('pizza.create');
-Route::post('/pizza/store','App\Http\Controllers\PizzaController@store')->name('pizza.store');
