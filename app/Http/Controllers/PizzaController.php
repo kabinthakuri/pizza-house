@@ -15,7 +15,8 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        return view('pizza.index');
+        $pizza=Pizza::all();
+        return view('pizza.index',compact('pizza'));
     }
 
     /**
@@ -46,7 +47,7 @@ class PizzaController extends Controller
         $pizza->image=$request->file('image')->store('public/upload/pizza_image');
         $pizza->save();
 
-        return redirect()->route('pizza.index');
+        return redirect()->route('pizza.index')->with('success','Pizza added successfully.');
         
     }
 
