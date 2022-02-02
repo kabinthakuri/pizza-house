@@ -40,8 +40,8 @@
                     </div>
                     <div class="form-control">
                         <label for="image">Image</label>
-                        <input type="file" name="image" class="form-control">
-                        <img class="m-2" src="{{Storage::url($pizza->image)}}" width="150" style="border:3px solid #000000">
+                        <input id="image" type="file" name="image" class="form-control">
+                        <img id="img" class="m-2" src="{{Storage::url($pizza->image)}}" width="150" style="border:3px solid #000000">
                     </div>
                     <div class="form-control text-center">
                         <button class="btn btn-primary" type="submit">Save</button>
@@ -52,4 +52,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('image').onchange= function(event) {
+    var output = document.getElementById('img');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+    
+        
+    };
+</script>
+
 @endsection

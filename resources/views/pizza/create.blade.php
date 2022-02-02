@@ -55,7 +55,8 @@
                     </div>
                     <div class="form-control">
                         <label for="image">Image</label>
-                        <input type="file" name="image" class="form-control">
+                        <input id="image" type="file" name="image" class="form-control mb-3">
+                        <img id="img" >
                     </div>
                     <div class="form-control text-center">
                         <button class="btn btn-primary" type="submit">Save</button>
@@ -66,4 +67,15 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('image').onchange = function(e){
+        var object = document.getElementById('img');
+        object.src = URL.createObjectURL(e.target.files[0]);
+        object.onload = function(){
+            URL.revokeObjectURL(object.src)
+        }
+        object.style = "border:3px solid #000000";
+        object.width = "160";
+    };
+</script>
 @endsection
