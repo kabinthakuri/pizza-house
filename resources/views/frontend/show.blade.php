@@ -19,7 +19,7 @@
                                 <p><input type="hidden" name="pizza_id" class="form-control" value="{{$pizza->id}}"></p>
                                 <p><input type="date" name="date" id="" class="form-control" required></p>
                                 <p><input type="time" name="time" id="" class="form-control" required></p>
-                                <p>Message:<textarea name="body" class="form-control" ></textarea></p>
+                                <p>Message:<textarea name="body" class="form-control" required></textarea></p>
                                 <p class="text-center"><input type="submit" value="Make Order" class="btn btn-danger"></p>
                                 </div>
                                 
